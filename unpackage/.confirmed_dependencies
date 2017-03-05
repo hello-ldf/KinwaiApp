@@ -1,0 +1,35 @@
+{
+	"view/tab-main.html": {
+		"resources": [
+			"fonts/mui-icons-extra.ttf",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/icons-extra.css",
+			"view/tab-sale.html"
+		],
+		"refer": [
+			"view/tab-sale.html"
+		]
+	},
+	"view/tab-sale.html": {
+		"resources": [
+			"css/app.css",
+			"view/sale/group_buy/main.html",
+			"fonts/mui-icons-extra.ttf",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/icons-extra.css"
+		],
+		"refer": [
+			"view/sale/group_buy/main.html"
+		]
+	},
+	"view/sale/group_buy/main.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	}
+}
