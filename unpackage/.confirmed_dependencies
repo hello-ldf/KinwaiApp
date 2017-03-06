@@ -30,6 +30,67 @@
 			"js/mui.min.js",
 			"fonts/mui.ttf",
 			"css/mui.min.css"
+		],
+		"refer": [
+			"view/sale/group_buy/stock_query.html",
+			"view/sale/group_buy/pullrefresh_main.html",
+			"view/sale/group_buy/corder_main.html"
+		]
+	},
+	"view/sale/group_buy/stock_query.html": {
+		"resources": [
+			"fonts/mui-icons-extra.ttf",
+			"js/common.js",
+			"js/jquery-1.11.3.min.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/icons-extra.css",
+			"js/immersed.js"
+		]
+	},
+	"view/sale/group_buy/pullrefresh_main.html": {
+		"resources": [
+			"view/sale/group_buy/pullrefresh_sub.html",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"view/sale/group_buy/pullrefresh_sub.html"
+		]
+	},
+	"view/sale/group_buy/pullrefresh_sub.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/mui.picker.min.js",
+			"css/mui.picker.min.css"
+		]
+	},
+	"view/sale/group_buy/corder_sub.html": {
+		"resources": [
+			"js/datedropper.min.js",
+			"js/jquery-1.11.3.min.js",
+			"css/datedropper.css",
+			"js/mui.min.js",
+			"css/app.css",
+			"css/mui.min.css",
+			"css/dd-icon/dd-icon.woff"
+		]
+	},
+	"view/sale/group_buy/corder_main.html": {
+		"resources": [
+			"view/sale/group_buy/corder_sub.html",
+			"js/mui.min.js",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"view/sale/group_buy/corder_sub.html"
 		]
 	}
 }

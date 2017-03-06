@@ -1,0 +1,15 @@
+.dd-d {
+	display: none;
+}
+
+.dd-w .dd-b .dd-n {
+	width: 60px;
+	display: block;
+}
+
+.card-right {
+	font-size: 13px;
+	text-align: right;
+	width: 45%;
+	display: inline-block;
+}

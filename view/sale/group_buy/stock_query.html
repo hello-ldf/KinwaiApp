@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="../../../css/mui.min.css" />
-		<link rel="stylesheet" type="text/css" href="../../../css/icons-extra.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../css/icons-extra.css" />
 		<link rel="stylesheet" type="text/css" href="../../../css/common.css" />
 	</head>
 
@@ -26,42 +26,59 @@
 						<label id="cmteid"></label>
 					</div>
 					<div class="row">
-						<label>库存：</label>
-						<label id="stock_qty"></label>
+						<label>品名：</label>
+						<label id="cmteid_text"></label>
 					</div>
 				</div>
 			</div>
+			<div id="m_stocks" class="mui-card">
+				<!--<div class="mui-card-content-inner" style="text-align: center;">
+					<div class="row">
+						<label>仓库：</label>
+						<label class="CWHID_text"></label>
+					</div>
+					<div class="row">
+						<label>库存：</label>
+						<label class="QTY"></label>
+					</div>
+				</div>-->
+			</div>
+
 		</div>
 
 		<script src="../../../js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../../js/mui.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../../js/common.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../../js/immersed.js" type="text/javascript" charset="utf-8"></script>
-		
+		<script src="../../../js/msg.js" type="text/javascript" charset="utf-8"></script>
+
 		<script type="text/javascript">
 			// mui初始化配置
 			mui.init();
 
 			// 加载server
-//			var server = localStorage.getItem("server");
-			var server = 'http://192.168.1.100:2345';
+			var server = localStorage.getItem("server");
 
 			// 二维码
 			function scaned(r) {
 				$("#cmteid").text("");
-				$("#stock_qty").text("");
+				$("#cmteid_text").text("");
+				var cards = $(".stock-card");
+				$.each(cards, function(i, card) {
+					card.remove();
+				});
 				$("#cmteid").text(r);
-				storck_qry(r);
+				stock_qry(r);
 			};
 
 			// 查团购库存
-			function storck_qry(cmteid) {
-				var parm = {cmteid: cmteid};
+			function stock_qry(cmteid) {
+				var parm = { cmteid: cmteid };
 				var json = JSON.stringify(parm);
 				
 				mui.ajax({
 					type: "Post",
-					url: server + "/Sale_GB/storck_qry",
+					url: server + "/Sale_GB/stock_qry",
 					crossDomain: true,
 					headers: {
 						'Content-Type': 'application/json'
@@ -69,7 +86,25 @@
 					data: json,
 					dataType: "json",
 					success: function(data) {
-						$("#stock_qty").text(data);
+						if(data == 4) {
+							$("#cmteid_text").text(msg[4]);
+							return;
+						}
+						var m_stocks = JSON.parse(data);
+						$("#cmteid_text").text(m_stocks[0].CMTEID_text);
+						$.each(m_stocks, function(i, m_stock) {
+							var html = "<div class='stock-card mui-card-content-inner' style='text-align: center;'>\
+											<div class='row'>\
+												<label>仓库：</label>\
+												<label class='CWHID_text'>" + m_stock.CWHID_text + "</label>\
+											</div>\
+											<div class='row'>\
+												<label>库存：</label>\
+												<label class='QTY'>" + m_stock.QTY + "</label>\
+											</div>\
+										</div>";
+							$("#m_stocks").append(html);
+						});
 					},
 					error: function(error) {
 						alert("库存查询失败，请检查网络是否畅通。 " + error)

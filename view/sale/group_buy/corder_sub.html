@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../../../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../../../css/datedropper.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/app.css" />
+		<style type="text/css">
+			#pickdate {
+				margin-bottom: 0px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--下拉刷新容器-->
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<!--数据列表-->
+			<input type="text" class="input" id="pickdate" style="text-align: center;color: dodgerblue;" />
+			<div class="mui-content">
+				<div style="padding: 10px 10px;">
+					<div id="segmentedControl" class="mui-segmented-control">
+						<a class="mui-control-item mui-active" href="#item1">
+							未提交
+						</a>
+						<a class="mui-control-item" href="#item2">
+							已交/未审
+						</a>
+						<a class="mui-control-item" href="#item3">
+							已审核
+						</a>
+					</div>
+				</div>
+				<div>
+					<!-- 未审核的 -->
+					<div id="item1" class="mui-control-content mui-active">
+						<div class="mui-card">
+							<div class="mui-card-header">
+								<label class="ccode">395-0124578（未提交）</label>
+								<label>李先生
+								(<label>先生</label>)
+								</label>
+							</div>
+							<div class="mui-card-content">
+								<div class="mui-card-content-inner">
+									<div class="mui-row">
+										<div>
+											<label class="card-right">创建日期：</label>
+											<label>2016-12-12</label>
+										</div>
+
+									</div>
+									<div class="mui-row">
+										<div>
+											<label class="card-right">联系电话：</label>
+											<label>13266459123</label>
+										</div>
+									</div>
+									<div class="mui-row">
+										<div>
+											<label class="card-right">订金：</label>
+											<label>￥161</label>
+										</div>
+									</div>
+									<div class="mui-row">
+										<div>
+											<label class="card-right">总金额：</label>
+											<label>￥129574.12</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mui-card-footer">
+								<a class="del mui-card-link">删除</a>
+								<a class="mui-card-link" onclick="test()">查看详情</a>
+							</div>
+						</div>
+					</div>
+					<!-- 未审核的 -->
+					<div id="item2" class="mui-control-content">
+						<div class="mui-card">
+							<div class="mui-card-header">
+								<label class="ccode">395-0124578（已交未审）</label>
+								<label>李先生
+								(<label>先生</label>)
+								</label>
+							</div>
+							<div class="mui-card-content">
+								<div class="mui-card-content-inner">
+									<div class="mui-row">
+										<div>
+											<label class="card-right">创建日期：</label>
+											<label>2016-12-12</label>
+										</div>
+
+									</div>
+									<div class="mui-row">
+										<div>
+											<label class="card-right">联系电话：</label>
+											<label>13266459123</label>
+										</div>
+									</div>
+									<div class="mui-row">
+										<div>
+											<label class="card-right">订金：</label>
+											<label>￥161</label>
+										</div>
+									</div>
+									<div class="mui-row">
+										<div>
+											<label class="card-right">总金额：</label>
+											<label>￥129574.12</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mui-card-footer">
+								<a class="del mui-card-link">删除</a>
+								<a class="mui-card-link" onclick="test()">查看详情</a>
+							</div>
+						</div>
+					</div>
+					<!-- 已审核的 -->
+					<div id="item3" class="mui-control-content">
+						<div class="mui-card">
+							<div class="mui-card-header">
+								<label>395-0124578（已审核）</label>
+								<label>李先生
+								(<label>先生</label>)
+								</label>
+							</div>
+							<div class="mui-card-content">
+								<div class="mui-card-content-inner">
+									<div class="mui-row">
+										<div>
+											<label class="card-right">创建日期：</label>
+											<label>2016-12-12</label>
+										</div>
+
+									</div>
+									<div class="mui-row">
+										<div>
+											<label class="card-right">联系电话：</label>
+											<label>13266459123</label>
+										</div>
+									</div>
+									<div class="mui-row">
+										<div>
+											<label class="card-right">订金：</label>
+											<label>￥161</label>
+										</div>
+									</div>
+									<div class="mui-row">
+										<div>
+											<label class="card-right">总金额：</label>
+											<label>￥129574.12</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="mui-card-footer">
+								<a class="mui-card-link">删除</a>
+								<a class="mui-card-link" onclick="test()">查看详情</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<script src="../../../js/mui.min.js"></script>
+			<script src="../../../js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+			<script src="../../../js/datedropper.min.js" type="text/javascript" charset="utf-8"></script>
+
+			<script>
+				var server = localStorage.getItem("server"); //服务器ip、端口
+				var area = JSON.parse(localStorage.getItem("areaJson")); // 地区信息
+				var initFlag = 1; // 1代表是初始化
+				var skipNum1 = 0; // 未提交 - 跳过的数量
+				var skipNum2 = 0; // 已交/未审 - 跳过的数量
+				var skipNum3 = 0; // 已审核 - 跳过的数量
+				var takeNum = 2; // 每次拿的数量
+				var db = "zcscdb7";
+				var who = "test";
+
+				mui.init({
+					pullRefresh: {
+						container: '#pullrefresh',
+						down: {
+							callback: pulldownRefresh
+						},
+						up: {
+							contentrefresh: '正在heheh...',
+							callback: pullupRefresh
+						}
+					}
+				});
+
+				// $.ready
+				$(function() {
+					// 日期控件 当天
+					var date = new Date();
+					var year = date.getFullYear();
+					var month = date.getMonth() + 1;
+					if(month >= 1 && month <= 9) {
+						month = "0" + month;
+					}
+					$("#pickdate").val(year + '-' + month);
+
+					// 日期控件 初始化
+					$("#pickdate").dateDropper({
+						init_animation: 'dropDown',
+						animate: false,
+						format: 'Y-m',
+						maxYear: '2025',
+						minYear: '2015'
+					});
+					$("#pickdate").on("change", function() {
+						pulldownRefresh();
+					})
+				});
+
+				/**
+				 * 下拉刷新具体业务实现
+				 */
+				function pulldownRefresh() {
+					setTimeout(function() {
+						var cards = $(".mui-card");
+						$.each(cards, function(i, card) {
+							card.remove();
+						});
+						initFlag = 1;
+						skipNum1 = 0;
+						skipNum2 = 0;
+						skipNum3 = 0;
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh(false); //参数为true代表没有更多数据了。
+						pullupRefresh();
+						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					}, 1000);
+				}
+
+				/**
+				 * 上拉加载具体业务实现
+				 */
+				function pullupRefresh() {
+					var flag = "";
+					var skipNum = 0;
+					if(initFlag == 1) {
+						flag = "0";
+					} else {
+						var id = $(".mui-control-content.mui-active").prop("id");
+						var flag = id.substring(4, 5);
+						if(flag == "1") skipNum = skipNum1;
+						if(flag == "2") skipNum = skipNum2;
+						if(flag == "3") skipNum = skipNum3;
+					}
+					if(skipNum < 0) {
+						mui.toast("别扯了，到底了....");
+						return;
+					}
+					var temp = {
+						db: db,
+						skipNum: skipNum,
+						takeNum: takeNum,
+						who: who,
+						yM: $("#pickdate").val(),
+						flag: flag
+					}
+					var json = JSON.stringify(temp);
+					mui.ajax({
+						type: "Post",
+						url: server + "/Sale_GB/pull_refresh",
+						crossDomain: true,
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						data: json,
+						dataType: "json",
+						success: function(data) {
+							initFlag = 0;
+							var result = JSON.parse(data);
+							var corders1 = result.corders1;
+							var corders2 = result.corders2;
+							var corders3 = result.corders3;
+
+							if(corders1 != null) {
+								skipNum1 = result.skipNum1;
+								$.each(corders1, function(i, corder) {
+									var html = getHtml(corder);
+									$("#item1").append(html);
+								});
+							}
+
+							if(corders2 != null) {
+								skipNum2 = result.skipNum2;
+								$.each(corders2, function(i, corder) {
+									var html = getHtml(corder);
+									$("#item2").append(html);
+								});
+							}
+
+							if(corders3 != null) {
+								skipNum3 = result.skipNum3;
+								$.each(corders3, function(i, corder) {
+									var html = getHtml(corder);
+									$("#item3").append(html);
+								});
+							}
+							
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(); 
+						},
+						error: function(error) {
+							mui.toast("订单获取失败，请检查网络是否畅通。" + error);
+						}
+					});
+				} // 上拉加载具体业务实现  end ****************************************************************
+				if(mui.os.plus) {
+					mui.plusReady(function() {
+						setTimeout(function() {
+							mui('#pullrefresh').pullRefresh().pullupLoading();
+						}, 1000);
+
+					});
+				} else {
+					mui.ready(function() {
+						mui('#pullrefresh').pullRefresh().pullupLoading();
+					});
+				}
+
+				function getHtml(corder) {
+					var html = '<div class="mui-card">\
+									<div class="mui-card-header">\
+										<label>' + corder.CCODE + '</label>\
+										<label>' + corder.CCMAN + '\
+										(<label>先生</label>)\
+										</label>\
+									</div>\
+									<div class="mui-card-content">\
+										<div class="mui-card-content-inner">\
+											<div class="mui-row">\
+												<div>\
+													<label class="card-right">创建日期：</label>\
+													<label>' + corder.DDATE.substring(0, 10) + '</label>\
+												</div>\
+											</div>\
+											<div class="mui-row">\
+												<div>\
+													<label class="card-right">联系电话：</label>\
+													<label>' + corder.custphone + '</label>\
+												</div>\
+											</div>\
+											<div class="mui-row">\
+												<div>\
+													<label class="card-right">订金：</label>\
+													<label>￥' + corder.DPAYAMT + '</label>\
+												</div>\
+											</div>\
+											<div class="mui-row">\
+												<div>\
+													<label class="card-right">总金额：</label>\
+													<label>￥' + corder.DAMT + '</label>\
+												</div>\
+											</div>\
+										</div>\
+									</div>\
+									<div class="mui-card-footer">\
+										<a class="mui-card-link">删除</a>\
+										<a class="mui-card-link">查看详情</a>\
+									</div>\
+								</div>';
+					return html;
+				}
+			</script>
+	</body>
+
+</html>
